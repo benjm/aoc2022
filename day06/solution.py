@@ -6,22 +6,18 @@ with open(filename) as f:
 
 print("starting part1")
 
-for pkt in lines:
-    found = False
+def unique(pkt,sze):
     i = 0
-    while (not found) and (i < len(pkt)-4):
-        if len(set(pkt[i:i+4])) == 4:
-            print(i+4)
-            found = True
+    while i < len(pkt)-sze:
+        if len(set(pkt[i:i+sze])) == sze:
+            return i+sze
         i+=1
+    return(-1)
+
+for pkt in lines:
+    print(unique(pkt,4))
 
 print("starting part2")
 
 for pkt in lines:
-    found = False
-    i = 0
-    while (not found) and (i < len(pkt)-14):
-        if len(set(pkt[i:i+14])) == 14:
-            print(i+14)
-            found = True
-        i+=1
+    print(unique(pkt,14))
